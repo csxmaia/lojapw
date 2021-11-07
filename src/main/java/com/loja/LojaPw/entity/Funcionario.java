@@ -30,7 +30,9 @@ public class Funcionario implements Serializable {
 	private Long id;
 
 	private String nome;
-	
+
+	private String cpf;
+
 	private Double salarioBruto;
 	
 	@Temporal(TemporalType.DATE)
