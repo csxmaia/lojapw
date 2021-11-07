@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
+import com.loja.LojaPw.entity.Imagem;
+import com.loja.LojaPw.repository.ImagemRepository;
 import com.loja.LojaPw.repository.MarcaRepository;
 import com.loja.LojaPw.constants.ConstantsImagens;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ImagemRepository imagemRepository;
 
     @Autowired
     private MarcaRepository marcaRepository;
@@ -76,25 +82,25 @@ public class ProdutoController {
 
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") MultipartFile arquivo) {
+    public ModelAndView salvar(@Validated Produto produto, BindingResult result, @RequestParam("file") List<MultipartFile> files) {
 
         if (result.hasErrors()) {
             return cadastrar(produto);
         }
         produtoRepository.saveAndFlush(produto);
+
         try {
+            if (files.size() > 0) {
+                for(MultipartFile file : files) {
+                    Path pathImage = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + produto.getId().toString() + "-" + file.getOriginalFilename());
+                    byte[] bytes = file.getBytes();
+                    Files.write(pathImage, bytes);
 
-            if (!arquivo.isEmpty()) {
-                byte[] bytes = arquivo.getBytes();
-
-                // Caminho onde a imagem vai ser salva
-                Path caminho = Paths.get(constantsImagens.CAMINHO_PASTA_IMAGENS + String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
-                Files.write(caminho, bytes);
-
-                // Salva no banco de dados a imagem com tal nome
-                produto.setNomeImagem(String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
-
-                produtoRepository.saveAndFlush(produto);
+                    Imagem imagem = new Imagem();
+                    imagem.setNome(produto.getId().toString() +  "-" + file.getOriginalFilename());
+                    imagem.setProduto(produto);
+                    imagemRepository.saveAndFlush(imagem);
+                }
             }
 
         } catch (IOException e) {
