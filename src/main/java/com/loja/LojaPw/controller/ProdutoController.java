@@ -58,6 +58,14 @@ public class ProdutoController {
         return mv;
     }
 
+    @GetMapping("/listar/search")
+    public ModelAndView listarComBusca(String searchParam) {
+        List<Produto> produtos = produtoRepository.findByParam(searchParam);
+        ModelAndView mv = new ModelAndView("administrativo/produtos/lista");
+        mv.addObject("listaProdutos", produtos);
+        return mv;
+    }
+
     @GetMapping("/editar/{id}")
     public ModelAndView editar(@PathVariable("id") Long id) {
         Optional<Produto> produto = produtoRepository.findById(id);
