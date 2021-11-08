@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Random;
+import java.util.UUID;
 
 @Controller
 public class EmailController {
@@ -37,10 +38,10 @@ public class EmailController {
             ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/solicitarToken");
             return mv;
         }
-        Random rand = new Random();
-        Integer int_random = rand.nextInt(25);
-        enviarEmail.send(funcionario.getEmail(),"Codigo de recuperação de senha", int_random.toString());
-        funcionario.setTokenPassword(int_random.toString());
+        String uuid = UUID.randomUUID().toString();
+        String random = uuid.substring(0, 5);
+        enviarEmail.send(funcionario.getEmail(),"Codigo de recuperação de senha", random);
+        funcionario.setTokenPassword(random);
         funcionarioRepositorio.saveAndFlush(funcionario);
         ModelAndView mv = new ModelAndView("/administrativo/recuperarSenha/alterarSenha");
         return mv;
