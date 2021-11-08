@@ -28,8 +28,9 @@ public class Produto implements Serializable {
 	
 	private Double valorVenda;
 	
-	private String categoria;
-	
+	@ManyToOne
+	private Categoria categoria;
+
 	@ManyToOne
 	private Marca marca;
 	

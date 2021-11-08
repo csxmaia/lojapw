@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.loja.LojaPw.entity.Imagem;
+import com.loja.LojaPw.repository.CategoriaRepository;
 import com.loja.LojaPw.repository.ImagemRepository;
 import com.loja.LojaPw.repository.MarcaRepository;
 import com.loja.LojaPw.constants.ConstantsImagens;
@@ -38,11 +39,15 @@ public class ProdutoController {
     @Autowired
     private MarcaRepository marcaRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     @GetMapping("/cadastrar")
     public ModelAndView cadastrar(Produto produto) {
         ModelAndView mv = new ModelAndView("administrativo/produtos/cadastro");
         mv.addObject("produto", produto);
         mv.addObject("listaMarcas", marcaRepository.findAll());
+        mv.addObject("listaCategorias", categoriaRepository.findAll());
         return mv;
     }
 
