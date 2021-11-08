@@ -62,4 +62,6 @@ public class Funcionario implements Serializable {
 
 	private String senha;
 
+	private String tokenPassword;
+
 }
