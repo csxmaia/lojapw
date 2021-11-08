@@ -1,8 +1,11 @@
 package com.loja.LojaPw.controller;
 
 import com.loja.LojaPw.entity.Funcionario;
+import com.loja.LojaPw.entity.Papel;
+import com.loja.LojaPw.entity.Permissao;
 import com.loja.LojaPw.repository.CidadeRepository;
 import com.loja.LojaPw.repository.FuncionarioRepository;
+import com.loja.LojaPw.repository.PermissaoRepository;
 import com.loja.LojaPw.service.EnviarEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 
 @Controller
@@ -23,10 +27,16 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepositorio;
+
+	@Autowired
+	private PermissaoRepository permissaoRepository;
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
-	
+
+	@Autowired
+	private EnviarEmail enviarEmail;
+
 	@GetMapping("/cadastrar")
 	public ModelAndView cadastrar(Funcionario funcionario) {
 		ModelAndView mv = new ModelAndView("administrativo/funcionarios/cadastro");
@@ -61,10 +71,21 @@ public class FuncionarioController {
 			return cadastrar(funcionario);
 		}
 
-		// criptar senha
-		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+		String uuid = UUID.randomUUID().toString();
+		String random = uuid.substring(0, 7);
+
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(random));
+
+		enviarEmail.send(funcionario.getEmail(), "Funcionario registrado", "Foi registrado um funcionario no sistema " +
+				"com esse email, suas informações para login são: login: " + funcionario.getEmail() + " senha: " + random);
 
 		funcionarioRepositorio.saveAndFlush(funcionario);
+		Permissao permissao = new Permissao();
+		permissao.setFuncionario(funcionario);
+		Papel papel = new Papel();
+		papel.setId(1L);
+		permissao.setPapel(papel);
+		permissaoRepository.save(permissao);
 		return cadastrar(new Funcionario());
 	}
 
