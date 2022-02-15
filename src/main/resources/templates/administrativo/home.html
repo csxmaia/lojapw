@@ -2,7 +2,8 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{administrativo/fragments/layout}">
 <head>
-<title>Pagina principal da loja virtual</title>
+	<title>Loja PW</title>
+	<link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<section class="layout-content" layout:fragment="corpo">
@@ -16,118 +17,114 @@
 			</div>
 		</nav>
 
-		<div class="container">
-			<h1 style="margin-bottom: 32px;">Painel Administrativo Loja Custom</h1>
-			<h3 style="margin-bottom: 12px;">Informações</h3>
-			<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; justify-items: center; margin-bottom: 32px;">
-				<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
-					<div style="font-size: 24px;">Vendas no mês</div>
-					<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;">2460</div>
-				</div>
-				<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
-					<div style="font-size: 24px;">Vendas pendentes</div>
-					<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;">28</div>
-				</div>
-				<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
-					<div style="font-size: 24px;">Faturamento mensal</div>
-					<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;">R$ 28.679,56</div>
-				</div>
+		<div class="d-flex">
+
+			<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 260px;">
+				<ul class="nav nav-pills flex-column mb-3">
+					<li class="nav-item">
+						<a href="#" class="nav-link active" aria-current="page">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+							Home
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/entrada/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+							Entrada Produtos
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/funcionarios/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+							Funcionários
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/papeis/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+							Papeis
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/permissoes/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Permissões
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/estados/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Estados
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/cidades/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Cidades
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/produtos/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Produtos
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/categorias/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Categorias
+						</a>
+					</li>
+					<li>
+						<a href="/administrativo/marcas/listar" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Marcas
+						</a>
+					</li>
+				</ul>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					Relatórios
+					<li>
+						<a href="/relatorio-jasper/clientes" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Novos Clientes
+						</a>
+					</li>
+					<li>
+						<a href="/relatorio-jasper/produtos" class="nav-link link-dark">
+							<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+							Produtos
+						</a>
+					</li>
+				</ul>
 			</div>
-			<h3 style="margin-bottom: 12px;">Funcionalidades do painel</h3>
-			<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; justify-items: center;">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Entrada Produtos</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/entrada/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/entrada/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
-					</div>
-				</div>
 
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Funcionários</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/funcionarios/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/funcionarios/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
+			<div class="container-fluid" style="max-width: 1300px;">
+				<h1 style="margin-bottom: 32px;">Painel Administrativo Loja PW</h1>
+				<h3 style="margin-bottom: 12px;">Informações</h3>
+				<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; justify-items: center; margin-bottom: 32px;">
+					<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
+						<div style="font-size: 24px;">Produtos cadastrados</div>
+						<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;"><span th:text="${qtdProdutos}"></span></div>
 					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Papeis</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/papeis/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/papeis/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
+					<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
+						<div style="font-size: 24px;">Clientes registrados</div>
+						<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;"><span th:text="${qtdClientes}"></span></div>
 					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Permissões</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/permissoes/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/permissoes/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
+					<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
+						<div style="font-size: 24px;">Faturamento Mensal</div>
+						<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;">R$ <span th:text="${faturamentoMensal}"></span></div>
 					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Estados</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/estados/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/estados/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
-					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Cidades</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/cidades/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/cidades/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
-					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Produtos</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/produtos/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/produtos/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
-					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Categorias</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/categorias/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/categorias/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
-					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title" style="text-align: center;">Marcas</h5>
-						<div style="display: flex; justify-content: space-around">
-							<a href="/administrativo/marcas/cadastrar" class="btn btn-primary"><i class="oi oi-plus"></i></a>
-							<a href="/administrativo/marcas/listar" class="btn btn-primary"><i class="oi oi-eye"></i></a>
-						</div>
+					<div style="border: 1px solid rgba(0, 0, 0, 0.5); padding: 12px 24px; border-radius: 8px;">
+						<div style="font-size: 24px;">Faturamento Total</div>
+						<div style="font-size: 32px; text-align: end; color: #0069D9; font-weight: 600;">R$ <span th:text="${faturamentoTotal}"></span></div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 
 	</section>
-
 </body>
 </html>

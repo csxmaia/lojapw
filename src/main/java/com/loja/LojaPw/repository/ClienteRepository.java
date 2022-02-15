@@ -9,4 +9,7 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query("from Cliente where email=?1")
     public List<Cliente> buscarClienteEmail(String email);
+
+    @Query(value = "SELECT COUNT(*) from cliente", nativeQuery = true)
+    Long quantidadeClientesCadastrados();
 }
