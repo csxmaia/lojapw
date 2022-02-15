@@ -14,9 +14,10 @@ public class IndexController {
 
     @GetMapping("/")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("/administrativo/index");
+        ModelAndView mv = new ModelAndView("/index");
         mv.addObject("listaProdutos", produtoRepository.findAll());
         return mv;
     }
-
 }
+
+
